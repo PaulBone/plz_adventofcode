@@ -1,0 +1,48 @@
+
+A compilation error occured and this error is not handled gracefully
+by the Plasma compiler. Sorry.
+Message:            We need to pass this error to our caller
+plzc location:      predicate `pre.branches.fix_branches_lambda'/5
+plzc file:          pre.branches.m
+
+
+Error report on wrong line:
+
+func string_to_int(s : String) -> Int {
+    func loop(pos : StringPos, num : Int) -> Int {
+        var maybe_cp = strpos_next(pos)
+        match (maybe_cp) {
+            None -> {
+                // End of input.
+                return num
+            }
+            Some(var cp) -> {
+                var maybe_digit = codepoint_to_digit(cp)
+                match (maybe_digit) {
+                    Some(var digit) -> {
+                        return loop(strpos_forward(pos), num * 10 + digit)
+                    }
+                    None -> {
+                        // Could make this function return a maybe.
+                        Builtin.die!("Bad number")
+                        return 0
+                    }
+                }
+            }
+        }
+    }
+    return loop(string_begin(s))
+}
+
+Compiler doesn't know that die() doesn't return.
+
+
+Runtime error with malloc.
+
+
+Running previously-unused code path, see
+https://github.com/PlasmaLang/plasma/issues/191
+
+
+ * Trace statements.
+

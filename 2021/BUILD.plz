@@ -1,0 +1,5 @@
+
+[day01a]
+type = program
+modules = [Day01a]
+

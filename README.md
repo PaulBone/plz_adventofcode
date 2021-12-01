@@ -1,5 +1,5 @@
-
-= Advent of Code in Plasma
+Advent of Code in Plasma
+========================
 
 This is the first year I've attempted the Advent of Code puzzles in Plasma.
 It's now possible because Plasma has some very very basic string handling.

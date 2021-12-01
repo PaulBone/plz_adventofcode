@@ -1,5 +1,5 @@
 
-[day01a]
+[day01]
 type = program
-modules = [Day01a]
+modules = [Day01]
 

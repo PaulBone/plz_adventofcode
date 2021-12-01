@@ -4,7 +4,7 @@
  * See LICENSE
  */
 
-module Day01a
+module Day01
 
 entrypoint func main() uses IO -> Int {
     var lines = readlines!()

@@ -1,5 +1,5 @@
 
 [day01]
 type = program
-modules = [Day01]
+modules = [Day01, Util, Lib]
 

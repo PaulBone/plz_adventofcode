@@ -130,7 +130,6 @@ func string_to_int(s : String) -> Int {
 }
 
 func codepoint_to_digit(cp : CodePoint) -> Maybe(Int) {
-    // This isn't exposed as a normal function?
     var s = codepoint_to_string(cp)
     // This isn't efficient.
     if (string_equals(s, "0")) {

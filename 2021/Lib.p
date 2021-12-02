@@ -29,6 +29,21 @@ func map(f : func('x) -> 'y, l : List('x)) -> List('y) {
 }
 
 export
+func foldl2(f : func('x, 'a, 'b) -> ('a, 'b), l : List('x), a : 'a, b : 'b)
+    -> ('a, 'b)
+{
+    match (l) {
+        [] -> {
+            return a, b
+        }
+        [var x | var xs] -> {
+            var a1, var b1 = f(x, a, b)
+            return foldl2(f, xs, a1, b1)
+        }
+    }
+}
+
+export
 func string_to_int(s : String) -> Int {
     func loop(pos : StringPos, num : Int) -> Int {
         var maybe_cp = strpos_next(pos)

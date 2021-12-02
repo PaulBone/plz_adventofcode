@@ -3,3 +3,7 @@
 type = program
 modules = [Day01, Util, Lib]
 
+[day02]
+type = program
+modules = [Day02, Util, Lib]
+

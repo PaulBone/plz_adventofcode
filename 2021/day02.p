@@ -69,7 +69,9 @@ func follow_direction_2(c : Command, x : Int, y : Int, aim : Int) ->
 }
 
 func parse_line(line : String) -> Command {
-    var dir_str, var pos_ws = first_token(line)
+    var begin = string_begin(line)
+    var pos_ws = Lib.advance_to(Util.whitespace, begin)
+    var dir_str = string_substring(begin, pos_ws)
 
     var dir
     if (string_equals("forward", dir_str)) {
@@ -83,48 +85,9 @@ func parse_line(line : String) -> Command {
         dir = Up // XXX
     }
 
-    var rest = string_substring(advance_to(not_whitespace, pos_ws),
+    var rest = string_substring(Lib.advance_to(Util.not_whitespace, pos_ws),
         string_end(line))
     var dist = Lib.string_to_int(rest)
     return Command(dir, dist)
-}
-
-func whitespace(cp : CodePoint) -> Bool {
-    // TODO: Plasma should have a faster way to do this that doesn't
-    // allocate a new string.
-    return string_equals(codepoint_to_string(cp), " ")
-}
-
-func not_whitespace(cp : CodePoint) -> Bool {
-    return not whitespace(cp)
-}
-
-func advance_to(check : func(CodePoint) -> Bool, p : StringPos) -> StringPos {
-    // Advance until there's whitespace.
-    var next = strpos_next(p)
-    match (next) {
-        None -> {
-            // It's the end of the first token, because there's nothing
-            // left in the string.
-            return p
-        }
-        Some(var cp) -> {
-            if (check(cp)) {
-                // It's the end of the first token, we found a space.
-                return p
-            } else {
-                return advance_to(check, strpos_forward(p))
-            }
-        }
-    }
-}
-
-func first_token(s : String) -> (String, StringPos) {
-    // Plasma has no way to detect whitespace, yet..
-
-    var begin = string_begin(s)
-    var pos = advance_to(whitespace, begin)
-    var token = string_substring(begin, pos)
-    return token, pos
 }
 

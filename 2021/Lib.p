@@ -113,3 +113,24 @@ func codepoint_to_digit(cp : CodePoint) -> Maybe(Int) {
     }
 }
 
+export
+func advance_to(check : func(CodePoint) -> Bool, p : StringPos) -> StringPos {
+    // Advance until there's whitespace.
+    var next = strpos_next(p)
+    match (next) {
+        None -> {
+            // It's the end of the first token, because there's nothing
+            // left in the string.
+            return p
+        }
+        Some(var cp) -> {
+            if (check(cp)) {
+                // It's the end of the first token, we found a space.
+                return p
+            } else {
+                return advance_to(check, strpos_forward(p))
+            }
+        }
+    }
+}
+

@@ -11,12 +11,29 @@ import Lib
 
 entrypoint func main() uses IO -> Int {
     var lines = Util.readlines!()
-
     var commands = Lib.map(parse_line, lines)
-    var x, var y = Lib.foldl2(follow_direction, commands, 0, 0)
-    print!("The position is: " ++ int_to_string(x) ++ ", " ++
-        int_to_string(y) ++ " whose product is: " ++
-        int_to_string(x * y) ++ "\n")
+
+    func part1() uses IO {
+        print!("\nPart 1\n------\n\n")
+        // if only Plasma already had loops.
+        var x, var y = Lib.foldl2(follow_direction, commands, 0, 0)
+        print!("The position is: " ++ int_to_string(x) ++ ", " ++
+            int_to_string(y) ++ " whose product is: " ++
+            int_to_string(x * y) ++ "\n")
+        print!("\n")
+    }
+    part1!()
+
+    func part2() uses IO {
+        print!("\nPart 2\n------\n\n")
+        var x, var y, var aim = 
+            Lib.foldl3(follow_direction_2, commands, 0, 0, 0)
+        print!("The position is: " ++ int_to_string(x) ++ ", " ++
+            int_to_string(y) ++ " whose product is: " ++
+            int_to_string(x * y) ++ "\n")
+        print!("\n")
+    }
+    part2!()
 
     return 0
 }
@@ -34,6 +51,20 @@ func follow_direction(c : Command, x : Int, y : Int) -> (Int, Int) {
         Forward -> x + dist, y
         Down    -> x,        y + dist
         Up      -> x,        y - dist
+    }
+}
+
+// I wish Plasma had named out parameters and state variables.
+func follow_direction_2(c : Command, x : Int, y : Int, aim : Int) ->
+    (Int, Int, Int)
+{
+    // I'm glad I added this feature!
+    Command(var dir, var dist) = c
+
+    return match (dir) {
+        Down    -> x,         y,               aim + dist
+        Up      -> x,         y,               aim - dist
+        Forward -> x + dist,  y + aim * dist,  aim
     }
 }
 

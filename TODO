@@ -1,3 +1,6 @@
 
  * Currying
 
+ * returning more than one thing without parans has a confusing syntax
+   error, particularly for nested functions.
+

@@ -15,12 +15,13 @@ export
 func readlines() uses IO -> List(String) {
     // Plasma doesn't support loops yet.
     func loop(xs : List(String)) uses IO -> List(String) {
-        var line = readline!()
-        // Plasma can't use == for string equality yet.
-        if (string_equals("", line)) {
-            return xs
-        } else {
-            return loop!([line | xs])
+        match (readline!()) {
+            EOF -> {
+                return xs
+            }
+            Ok(var line) -> {
+                return loop!([line | xs])
+            }
         }
     }
 

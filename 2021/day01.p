@@ -6,13 +6,14 @@
 
 module Day01
 
+import List
+import String
 import Util
-import Lib
 
 entrypoint func main() uses IO -> Int {
     var lines = Util.readlines!()
 
-    var depths = Lib.map(Lib.string_to_int, lines)
+    var depths = List.map(String.string_to_int, lines)
 
     func count_increases(ds0 : List(Int), last : Int, count0 : Int) -> Int {
         match (ds0) {

@@ -9,7 +9,7 @@
  */
 module Util
 
-import Lib
+import List
 
 export
 func readlines() uses IO -> List(String) {
@@ -25,7 +25,7 @@ func readlines() uses IO -> List(String) {
         }
     }
 
-    return Lib.reverse(loop!([]))
+    return List.reverse(loop!([]))
 }
 
 export

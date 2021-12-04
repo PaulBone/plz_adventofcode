@@ -1,9 +1,9 @@
 
 [day01]
 type = program
-modules = [Day01, Util, Lib]
+modules = [Day01, Util, List, String]
 
 [day02]
 type = program
-modules = [Day02, Util, Lib]
+modules = [Day02, Util, List, String]
 

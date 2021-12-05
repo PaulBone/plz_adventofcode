@@ -22,8 +22,10 @@ func main() uses IO -> Int {
         func loop_x(x : Int, count_x : Int) uses IO -> Int {
             if x <= max_coord {
                 var count = num_lines_crossing(x, y, lines)
+                // For debugging
+                // print!(if count == 0 then "." else int_to_string(count))
                 return loop_x!(x + 1,
-                    (if count >= 2 then 1 else 0) + count_x) 
+                    (if count >= 2 then 1 else 0) + count_x)
             } else {
                 return count_x
             }
@@ -32,6 +34,7 @@ func main() uses IO -> Int {
         if y <= max_coord {
             var count_x = loop_x!(0, 0)
             print!(int_to_string(y) ++ "/" ++ int_to_string(max_coord) ++ "\n")
+            // print!("\n")
             return loop_y!(y + 1, count_y + count_x)
         } else {
             return count_y
@@ -65,18 +68,34 @@ func does_line_cross(x : Int, y : Int, l : Line) -> Bool {
     Point(var bx, var by) = b
 
     // Only include vertical and horizontal lines
-    if (ax == bx and x == ax) {
-        return between(ay, y, by)
-    } else if (ay == by and y == ay) {
-        return between(ax, x, bx)
+    if ax == bx {
+        return x == ax and between(ay, y, by)
+    } else if ay == by {
+        return y == ay and between(ax, x, bx)
     } else {
-        return False
+        if (ax < bx) {
+            if ax <= x and x <= bx {
+                var diff = x - ax
+                return ay <= by and ay + diff == y or
+                    by < ay and ay - diff == y
+            } else {
+                return False
+            }
+        } else {
+            if bx <= x and x <= ax {
+                var diff = x - bx
+                return by < ay and by + diff == y or
+                    ay <= by and by - diff == y
+            } else {
+                return False
+            }
+        }
     }
 }
 
 func parse_line(string : String) -> Line {
     var end_of_a = String.advance_to(Util.whitespace, string_begin(string))
-    var start_of_b = String.advance_to(Util.not_whitespace, 
+    var start_of_b = String.advance_to(Util.not_whitespace,
         String.advance_to(Util.whitespace, strpos_forward(end_of_a)))
 
     var a = string_substring(string_begin(string), end_of_a)

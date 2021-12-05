@@ -30,6 +30,19 @@ func map(f : func('x) -> 'y, l : List('x)) -> List('y) {
 }
 
 export
+func foldl(f : func('x, 'a) -> ('a), l : List('x), a : 'a) -> 'a {
+    match (l) {
+        [] -> {
+            return a
+        }
+        [var x | var xs] -> {
+            var a1 = f(x, a)
+            return foldl(f, xs, a1)
+        }
+    }
+}
+
+export
 func foldl2(f : func('x, 'a, 'b) -> ('a, 'b), l : List('x), a : 'a, b : 'b)
     -> ('a, 'b)
 {

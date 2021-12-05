@@ -22,7 +22,6 @@ func main() uses IO -> Int {
         func loop_x(x : Int, count_x : Int) uses IO -> Int {
             if x <= max_coord {
                 var count = num_lines_crossing(x, y, lines)
-                print!(" " ++ int_to_string(count) ++ " ")
                 return loop_x!(x + 1,
                     (if count >= 2 then 1 else 0) + count_x) 
             } else {
@@ -32,7 +31,7 @@ func main() uses IO -> Int {
 
         if y <= max_coord {
             var count_x = loop_x!(0, 0)
-            print!("\n")
+            print!(int_to_string(y) ++ "/" ++ int_to_string(max_coord) ++ "\n")
             return loop_y!(y + 1, count_y + count_x)
         } else {
             return count_y

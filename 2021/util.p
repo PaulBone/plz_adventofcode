@@ -40,3 +40,23 @@ func not_whitespace(cp : CodePoint) -> Bool {
     return not whitespace(cp)
 }
 
+export
+func read_lines_until_blank() uses IO -> IOResult(List(String)) {
+    func loop(acc : List(String)) uses IO -> IOResult(List(String)) {
+        match (readline!()) {
+            EOF -> {
+                return match (acc) {
+                    [] -> EOF
+                    [_ | _] -> Ok(List.reverse(acc))
+                }
+            }
+            Ok(var line) -> {
+                return if (string_equals("", line))
+                    then Ok(List.reverse(acc))
+                    else loop!([line | acc])
+            }
+        }
+    }
+    return loop!([])
+}
+

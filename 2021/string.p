@@ -85,3 +85,11 @@ func advance_to(check : func(CodePoint) -> Bool, p : StringPos) -> StringPos {
     }
 }
 
+export
+func concat_list(l : List(String)) -> String {
+    return match (l) {
+        [] -> ""
+        [var x | var xs] -> x ++ concat_list(xs)
+    }
+}
+

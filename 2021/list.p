@@ -12,21 +12,30 @@ module List
 
 export
 func length(list : List('x)) -> Int {
-    return match (list) {
-        [] -> 0
-        [_ | var tail] -> 1 + length(tail)
+    func loop(l0 : List('x), a : Int) -> Int {
+        return match (l0) {
+            [] -> a
+            [_ | var l] -> loop(l, a + 1)
+        }
+    }
+    return loop(list, 0)
+}
+
+export
+func append(a : List('x), b : List('x)) -> List('x) {
+    return reverse_acc(reverse(a), b)
+}
+
+func reverse_acc(input : List('x), acc : List('x)) -> List('x) {
+    return match (input) {
+        [] -> acc
+        [var x | var xs] -> reverse_acc(xs, [x | acc])
     }
 }
 
 export
 func reverse(list : List('x)) -> List('x) {
-    func loop(acc : List('x), input : List('x)) -> List('x) {
-        return match (input) {
-            [] -> acc
-            [var x | var xs] -> loop([x | acc], xs)
-        }
-    }
-    return loop([], list)
+    return reverse_acc(list, [])
 }
 
 export
@@ -111,5 +120,12 @@ func filter(p : func('t) -> Bool, list : List('t)) -> List('t) {
             }
         }
     }
+}
+
+export
+func replicate(item : 't, num : Int) -> List('t) {
+    return if num == 0
+        then []
+        else [item | replicate(item, num - 1)] 
 }
 

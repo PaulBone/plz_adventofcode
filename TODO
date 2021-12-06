@@ -1,5 +1,8 @@
 
  * Currying
+ * A tip when you don't include Util and try to use Util.readlines, other
+   than "not found", it should say "Util hasn't been imported"
+ * Stack traces for crashes, including too much recursion.
 
  * returning more than one thing without parans has a confusing syntax
    error, particularly for nested functions.

@@ -10,6 +10,7 @@
 module Util
 
 import List
+import String
 
 export
 func readlines() uses IO -> List(String) {
@@ -98,3 +99,40 @@ export
 func print_int(i : Int) uses IO {
     print!(int_to_string(i) ++ "\n")
 }
+
+func is_comma(cp : CodePoint) -> Bool {
+    return string_equals(codepoint_to_string(cp), ",")
+}
+func not_curry(f : func('a) -> Bool) -> (func('a) -> Bool) {
+    func not_f(x : 'a) -> Bool {
+        return not f(x)
+    }
+    return not_f
+}
+
+func split_at(split : func(CodePoint) -> Bool, string : String) 
+    -> List(String)
+{
+    func loop(pos0 : StringPos, acc : List(String)) -> List(String) {
+        match (strpos_next(pos0)) {
+            None -> {
+                return List.reverse(acc)
+            }
+            Some(_) -> {
+                var pos1 = String.advance_to(split, pos0)
+                var str = string_substring(pos0, pos1)
+                var pos2 = String.advance_to(not_curry(split), pos1)
+                return loop(pos2, [str | acc])
+            }
+        }
+    }
+
+    return loop(string_begin(string), [])
+}
+
+export
+func read_comma_list() uses IO -> List(String) {
+    var string = String.concat_list(readlines!())
+    return split_at(is_comma, string)
+}
+

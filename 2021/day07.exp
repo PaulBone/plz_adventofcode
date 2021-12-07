@@ -1,0 +1,70 @@
+Crabs: 1000
+Average position: 475
+Range is 0, 628, 1256, 1885
+Fuel for midpoints is 401149, 817325
+Range is 0, 418, 836, 1256
+Fuel for midpoints is 349557, 504967
+Range is 0, 278, 556, 836
+Fuel for midpoints is 348627, 376961
+Range is 0, 185, 370, 556
+Fuel for midpoints is 367077, 345935
+Range is 185, 308, 431, 556
+Fuel for midpoints is 346057, 351131
+Range is 185, 267, 349, 431
+Fuel for midpoints is 350017, 345245
+Range is 267, 321, 375, 431
+Fuel for midpoints is 345461, 346183
+Range is 267, 303, 339, 375
+Fuel for midpoints is 346367, 345199
+Range is 303, 327, 351, 375
+Fuel for midpoints is 345309, 345273
+Range is 327, 343, 359, 375
+Fuel for midpoints is 345203, 345465
+Range is 327, 337, 347, 359
+Fuel for midpoints is 345205, 345225
+Range is 327, 333, 339, 347
+Fuel for midpoints is 345227, 345199
+Range is 333, 337, 341, 347
+Fuel for midpoints is 345205, 345199
+Range is 337, 340, 343, 347
+Fuel for midpoints is 345197, 345203
+Range is 337, 339, 341, 343
+Fuel for midpoints is 345199, 345199
+Range is 339 - 341
+Fuel is 345199, 345197, 345199, 345199
+Part 1 most optimal position is 340 for 345197 fuel
+Range is 0, 628, 1256, 1885
+Fuel for midpoints is 108001596, 401132120
+Range is 0, 418, 836, 1256
+Fuel for midpoints is 98014030, 161392401
+Range is 0, 278, 556, 836
+Fuel for midpoints is 115872385, 99606038
+Range is 278, 464, 650, 836
+Fuel for midpoints is 96427382, 111601639
+Range is 278, 402, 526, 650
+Fuel for midpoints is 99062246, 97638867
+Range is 402, 484, 566, 650
+Fuel for midpoints is 96397858, 100461926
+Range is 402, 456, 510, 566
+Fuel for midpoints is 96551242, 96958007
+Range is 402, 438, 474, 510
+Fuel for midpoints is 97064035, 96362584
+Range is 438, 462, 486, 510
+Fuel for midpoints is 96452344, 96416925
+Range is 462, 478, 494, 510
+Fuel for midpoints is 96364678, 96533251
+Range is 462, 472, 482, 494
+Fuel for midpoints is 96367542, 96382792
+Range is 462, 468, 474, 482
+Fuel for midpoints is 96389462, 96362584
+Range is 468, 472, 476, 482
+Fuel for midpoints is 96367542, 96361630
+Range is 472, 475, 478, 482
+Fuel for midpoints is 96361606, 96364678
+Range is 472, 474, 476, 478
+Fuel for midpoints is 96362584, 96361630
+Range is 474, 475, 476, 478
+Fuel for midpoints is 96361606, 96361630
+Range is 474 - 476
+Fuel is 96362584, 96361606, 96361630, 96361630
+Part 2 most optimal position is 475 for 96361606 fuel

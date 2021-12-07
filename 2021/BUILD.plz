@@ -11,3 +11,7 @@ modules = [Day02, Util, List, String]
 type = program
 modules = [Day05, Util, List, String]
 
+[day07]
+type = program
+modules = [Day07, Util, List, String, Int]
+

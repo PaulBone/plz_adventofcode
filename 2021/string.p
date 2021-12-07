@@ -104,6 +104,25 @@ func concat_list(l : List(String)) -> String {
 }
 
 export
+func join(j : String, l : List(String)) -> String {
+    match (l) {
+        [] -> {
+            return ""
+        }
+        [var x | var xs] -> {
+            match xs {
+                [] -> {
+                    return x
+                }
+                [_ | _] -> {
+                    return x ++ j ++ join(j, xs)
+                }
+            }
+        }
+    }
+}
+
+export
 func string_length(s : String) -> Int {
     func loop(p : StringPos, acc : Int) -> Int {
         var next = strpos_next(p)

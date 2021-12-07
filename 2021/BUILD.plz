@@ -7,6 +7,10 @@ modules = [Day01, Util, List, String]
 type = program
 modules = [Day02, Util, List, String]
 
+[day03]
+type = program
+modules = [Day03, Util, Lib]
+
 [day05]
 type = program
 modules = [Day05, Util, List, String]

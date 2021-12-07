@@ -11,6 +11,14 @@
 module List
 
 export
+func length(list : List('x)) -> Int {
+    return match (list) {
+        [] -> 0
+        [_ | var tail] -> 1 + length(tail)
+    }
+}
+
+export
 func reverse(list : List('x)) -> List('x) {
     func loop(acc : List('x), input : List('x)) -> List('x) {
         return match (input) {
@@ -26,6 +34,22 @@ func map(f : func('x) -> 'y, l : List('x)) -> List('y) {
     return match (l) {
         [] -> []
         [var x | var xs] -> [f(x) | map(f, xs)]
+    }
+}
+
+export
+func map_fold(f : func('x, 'a) -> ('y, 'a), l : List('x), a : 'a)
+    -> (List('y), 'a)
+{
+    match (l) {
+        [] -> {
+            return [], a
+        }
+        [var x | var xs] -> {
+            var y, var a1 = f(x, a)
+            var ys, var a2 = map_fold(f, xs, a1)
+            return [y | ys], a2
+        }
     }
 }
 
@@ -68,6 +92,23 @@ func foldl3(f : func('x, 'a, 'b, 'c) -> ('a, 'b, 'c), l : List('x),
         [var x | var xs] -> {
             var a1, var b1, var c1 = f(x, a, b, c)
             return foldl3(f, xs, a1, b1, c1)
+        }
+    }
+}
+
+export
+func filter(p : func('t) -> Bool, list : List('t)) -> List('t) {
+    match (list) {
+        [] -> {
+            return []
+        }
+        [var x | var xs] -> {
+            var rest = filter(p, xs)
+            if (p(x)) {
+                return [x | rest]
+            } else {
+                return rest
+            }
         }
     }
 }

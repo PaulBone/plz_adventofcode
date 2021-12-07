@@ -11,6 +11,16 @@ module String
 
 export
 func string_to_int(s : String) -> Int {
+    return string_to_num(s, 10)
+}
+
+export
+func string_to_binary(s : String) -> Int {
+    return string_to_num(s, 2)
+}
+
+// Base is from 2-10.  Only digits 0-9 are recognised.
+func string_to_num(s : String, base : Int) -> Int {
     func loop(pos : StringPos, num : Int) -> Int {
         var maybe_cp = strpos_next(pos)
         match (maybe_cp) {
@@ -22,7 +32,7 @@ func string_to_int(s : String) -> Int {
                 var maybe_digit = codepoint_to_digit(cp)
                 match (maybe_digit) {
                     Some(var digit) -> {
-                        return loop(strpos_forward(pos), num * 10 + digit)
+                        return loop(strpos_forward(pos), num * base + digit)
                     }
                     None -> {
                         // Could make this function return a maybe.
@@ -93,3 +103,18 @@ func concat_list(l : List(String)) -> String {
     }
 }
 
+export
+func string_length(s : String) -> Int {
+    func loop(p : StringPos, acc : Int) -> Int {
+        var next = strpos_next(p)
+        match (next) {
+            None -> {
+                return acc
+            }
+            Some(_) -> {
+                return loop(strpos_forward(p), acc + 1)
+            }
+        }
+    }
+    return loop(string_begin(s), 0)
+}

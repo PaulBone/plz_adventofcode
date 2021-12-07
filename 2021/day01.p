@@ -1,7 +1,7 @@
 /*
  * vim: ft=plasma
- * This is free and unencumbered software released into the public domain.
- * See LICENSE
+ * Copyright (C) 2021 Paul Bone
+ * Distributed under the terms of the MIT License see LICENSE
  */
 
 module Day01
